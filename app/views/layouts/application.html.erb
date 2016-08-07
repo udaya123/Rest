@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rest</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
+  </head>
+
+  <body>
+  
+  <nav>
+        <ul>
+      <% if current_user %>
+        <li>
+          <a href='#'>
+          <span class='glyphicon glyphicon-user'></span>
+          <%= "Hi #{current_user.Role} #{current_user.Name}!"%>
+          </a>
+        </li>
+        <li>
+          <%= link_to destroy_user_session_path, method: :delete do %>
+            <span class='glyphicon glyphicon-log-out'></span> Logout
+          <%end%>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to new_user_registration_path do %>
+            <span class='glyphicon glyphicon-user'/></span> Sign Up
+          <%end%>
+        </li>
+        <li>
+          <%= link_to new_user_session_path do %>
+            <span class='glyphicon glyphicon-log-in'/></span> Login
+          <%end%>
+        </li>
+    <% end %>
+  </ul>
+  </nav>
+
+    <%= yield %>
+  </body>
+</html>
+
+ 
