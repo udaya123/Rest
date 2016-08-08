@@ -1,4 +1,5 @@
-
+<p id="notice"><%= notice %></p>
+<h2>List of Restaurant Categories</h2>
 <table style="width: 100%;" BORDER =2 align=center>
   <thead>
     <tr BGCOLOR=GREY>
@@ -12,7 +13,7 @@
       <tr align=center>
         <td><%= c.name %></td>
         <td><%= c.description %></td>
-        <td class="indexListButton"><%= link_to 'Check the Restaurants', c %></td>
+        <td class="indexListButton"><%= link_to 'View Restaurants', c %></td>
       </tr>
     <% end %>
   

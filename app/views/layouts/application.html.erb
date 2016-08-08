@@ -12,32 +12,60 @@
   <body>
   
   <nav>
-        <ul>
+        
       <% if current_user %>
-        <li>
+       <ul style="text-align: left">
+      <B><li align = left>
+      <%= link_to 'Udaya Restaurants Directory',  user_restaurants_path(current_user.id) %>               
+      </li>
+      </B>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       <B><li align = left>
+             <%= link_to 'Categories',  categories_path %>               
+      </li>
+      </B>&nbsp;&nbsp;&nbsp;
+      <%if current_user.Role == 'owner' %>
+       <B><li>
+       <%= link_to 'Owners Portal', user_reservations_path(current_user.id) %>
+       </li> 
+       <% else %>
+       <li>
+       <%= link_to 'My Reservations', user_reservations_path(current_user.id) %>
+       </li>
+       </B>
+       <% end %> 
+      </ul>
+      <b>
+       <ul style="text-align: right">
+
+        <li style="text-align: right">
           <a href='#'>
           <span class='glyphicon glyphicon-user'></span>
           <%= "Hi #{current_user.Role} #{current_user.Name}!"%>
           </a>
         </li>
-        <li>
+        <li style="text-align: right">
           <%= link_to destroy_user_session_path, method: :delete do %>
             <span class='glyphicon glyphicon-log-out'></span> Logout
           <%end%>
         </li>
+        </ul>
+        </b>
       <% else %>
-        <li>
+      <b><ul style="text-align: right">
+        <li style="text-align: right">
           <%= link_to new_user_registration_path do %>
             <span class='glyphicon glyphicon-user'/></span> Sign Up
           <%end%>
         </li>
-        <li>
+        <li style="text-align: right">
           <%= link_to new_user_session_path do %>
             <span class='glyphicon glyphicon-log-in'/></span> Login
           <%end%>
         </li>
-    <% end %>
   </ul>
+  </b>
+    <% end %>
+  
   </nav>
 
     <%= yield %>

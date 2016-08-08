@@ -4,13 +4,13 @@ body {
   font-family: helvetica, sans-serif;
 }
 nav {
-  background: #f0f0f0;
+  background: #000000;
+  color: white;
   padding: 1em 2em;
 }
 nav ul,
 nav li {
   margin: 0;
-  text-align: right;
   list-style: none;
   padding: 0;
 }
@@ -24,7 +24,7 @@ nav li:first-child {
 }
 nav a {
   text-decoration: none;
-  color: #222;
+  color: white;
   display: inline-block;
   padding: 0 2px;
   margin: 0 -2px -2px;

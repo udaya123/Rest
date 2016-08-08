@@ -2,9 +2,9 @@
 
 <h1>Reservations</h1>
 
-<table>
+<table style="width: 100%;" BORDER =2 align=center>
   <thead>
-    <tr>
+    <tr BGCOLOR=GREY>
       <th>Email</th>
       <th>Requested date time</th>
       <th>Message</th>
@@ -16,20 +16,36 @@
 
   <tbody>
     <% @reservations.each do |reservation| %>
-      <tr>
+    <font color="white"><%= user = User.find(reservation.user_id) %>
+    <%= restaurant = Restaurant.find(reservation.restaurant_id) %> </font>
+    <%if current_user.Role == 'owner' %>
+     <tr align=center>
         <td><%= reservation.email %></td>
         <td><%= reservation.requested_date_time %></td>
         <td><%= reservation.message %></td>
-        <td><%= reservation.restaurant_id %></td>
-        <td><%= reservation.user_id %></td>
+        <td><%= restaurant.Name %></td>
+        <td><%= user.Name %></td>
         <td><%= link_to 'Show', reservation %></td>
         <td><%= link_to 'Edit', edit_reservation_path(reservation) %></td>
         <td><%= link_to 'Destroy', reservation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
+      <% else %>
+    <% if reservation.user_id == current_user.id %>
+      <tr>
+        <td><%= reservation.email %></td>
+        <td><%= reservation.requested_date_time %></td>
+        <td><%= reservation.message %></td>
+        <td><%= restaurant.Name %></td>
+        <td><%= user.Name %></td>
+        <td><%= link_to 'Show', reservation %></td>
+        <td><%= link_to 'Edit', edit_reservation_path(reservation) %></td>
+        <td><%= link_to 'Destroy', reservation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+      <% end %>
+       <% end %>
     <% end %>
   </tbody>
 </table>
 
 <br>
 
-<%= link_to 'New Reservation', new_reservation_path %>

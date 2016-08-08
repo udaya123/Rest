@@ -1,10 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Restaurants</h1>
+<h1>List of Restaurants</h1>
 
-<table>
+<table style="width: 100%;" BORDER =2 align=center>
   <thead>
-    <tr>
+    <tr BGCOLOR=GREY>
       <th>Name</th>
       <th>Address</th>
       <th>Phonenumber</th>
@@ -14,13 +14,13 @@
 
   <tbody>
     <% @restaurants.each do |restaurant| %>
-      <tr>
+      <tr align=center>
         <td><%= restaurant.id %></td>
         <td><%= restaurant.Name %></td>
         <td><%= restaurant.Address %></td>
         <td><%= restaurant.Phonenumber %></td>
         
-        <td class="indexListButton"><%= link_to 'Show', user_restaurant_path(@restaurant) %>        
+        <td class="indexListButton"><%= link_to 'Show', user_restaurant_path(current_user.id, restaurant.id) %>        
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New Restaurant', new_user_restaurant_path %>
+
