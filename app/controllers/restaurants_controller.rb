@@ -1,5 +1,6 @@
 class RestaurantsController < ApplicationController
   before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
+  #before_action :authenticate_user!, except: [:index, :show]
 
   # GET /restaurants
   # GET /restaurants.json
@@ -10,6 +11,8 @@ class RestaurantsController < ApplicationController
   # GET /restaurants/1
   # GET /restaurants/1.json
   def show
+  #  @users = @restaurant.users
+   # @categories = @restaurant.categories
   end
 
   # GET /restaurants/new
@@ -18,14 +21,16 @@ class RestaurantsController < ApplicationController
   end
 
   # GET /restaurants/1/edit
-  def edit
-  end
+  #def edit
+   # authenticate_rest_owner
+  #end
 
   # POST /restaurants
   # POST /restaurants.json
   def create
     @restaurant = Restaurant.new(restaurant_params)
-
+current_user.restaurants << @restaurant
+Category.find(params[:restaurant][:category_ids]).restaurants << @restaurant
     respond_to do |format|
       if @restaurant.save
         format.html { redirect_to @restaurant, notice: 'Restaurant was successfully created.' }
@@ -40,6 +45,7 @@ class RestaurantsController < ApplicationController
   # PATCH/PUT /restaurants/1
   # PATCH/PUT /restaurants/1.json
   def update
+    Category.find(params[:restaurant][:category_ids]).restaurants << @restaurant
     respond_to do |format|
       if @restaurant.update(restaurant_params)
         format.html { redirect_to @restaurant, notice: 'Restaurant was successfully updated.' }
@@ -54,6 +60,8 @@ class RestaurantsController < ApplicationController
   # DELETE /restaurants/1
   # DELETE /restaurants/1.json
   def destroy
+    #if authenticate_rest_owner
+  else
     @restaurant.destroy
     respond_to do |format|
       format.html { redirect_to restaurants_url, notice: 'Restaurant was successfully destroyed.' }
@@ -61,6 +69,11 @@ class RestaurantsController < ApplicationController
     end
   end
 
+   #def authenticate_rest_owner
+   #if current_user.name != @restaurant.users.first.name
+    #redirect_to root_path
+#end
+#end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_restaurant
@@ -69,6 +82,6 @@ class RestaurantsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def restaurant_params
-      params.require(:restaurant).permit(:Name, :Address, :Phonenumber)
+      params.require(:restaurant).permit(:Name, :Address, :Phonenumber, :category_ids)
     end
 end

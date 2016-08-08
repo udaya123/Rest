@@ -1,29 +1,19 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Categories</h1>
-
-<table>
+<table style="width: 100%;" BORDER =2 align=center>
   <thead>
-    <tr>
+    <tr BGCOLOR=GREY>
       <th>Name</th>
       <th>Description</th>
-      <th colspan="3"></th>
+      <th>           </th> 
     </tr>
   </thead>
 
-  <tbody>
-    <% @categories.each do |category| %>
-      <tr>
-        <td><%= category.name %></td>
-        <td><%= category.description %></td>
-        <td><%= link_to 'Show', category %></td>
-        <td><%= link_to 'Edit', edit_category_path(category) %></td>
-        <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% @categories.each do |c| %>
+      <tr align=center>
+        <td><%= c.name %></td>
+        <td><%= c.description %></td>
+        <td class="indexListButton"><%= link_to 'Check the Restaurants', c %></td>
       </tr>
     <% end %>
-  </tbody>
+  
 </table>
-
-<br>
-
-<%= link_to 'New Category', new_category_path %>

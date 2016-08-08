@@ -26,22 +26,18 @@ categories_description = ["Go whenever feeling lazy to cook", "Only for Restaura
 end
 
 restaurant_names = ["Mc Donalds", "China Hut", "Gumrai", "SweetTomatoes", "Olive Garden"]
-
 restaurant_addresses = ["321 Milwakee ave. Chicago, IL", "334 wells st. Lisle, IL", "534 Geneva blvd. Aurora, IL", "900 Algonquin Rd. Arlington Heights, IL", "345 north st. Naperville, IL"]
 restaurant_phone_numbers = ["235-457-5645", "234-487-5574", "658-457-5555", "356-783-7848", "754-458-4895"]
-restaurant_category_ids = [1, 2, 5, 4, 3]
+restaurant_category_ids = [1, 2, 3, 4, 5]
 restaurants = []
 (0..4).each do |i|
-  restaurants << Restaurant.create( :name => restaurant_names[i], :address => restaurant_addresses[i],
-                      :phone_number => restaurant_phone_numbers[i],
-                      :category_ids => restaurant_category_ids[i])
+  restaurants << Restaurant.create( Name: restaurant_names[i], 
+                      Address: restaurant_addresses[i],
+                      Phonenumber: restaurant_phone_numbers[i],
+                      category_id: restaurant_category_ids[i])
 end
 
 users.each_with_index do |user, index|
   user.restaurants << restaurants[index]
-end
-                                             :address => restaurant_addresses[i],
-                      :phone_number => restaurant_phone_numbers[i],
-                      :category_ids => restaurant_category_ids[i])
 end
 
