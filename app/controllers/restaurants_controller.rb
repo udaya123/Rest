@@ -11,6 +11,8 @@ class RestaurantsController < ApplicationController
   # GET /restaurants/1
   # GET /restaurants/1.json
   def show
+    @restaurant_id =@restaurant.id
+    @user_id = :user_id
   #  @users = @restaurant.users
    # @categories = @restaurant.categories
   end

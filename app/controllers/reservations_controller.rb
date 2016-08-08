@@ -13,27 +13,32 @@ class ReservationsController < ApplicationController
   end
 
   # GET /reservations/new
- # def new
-  #  @reservation = Reservation.new
-  #end
+  def new
+    @reservation = Reservation.new
+   # @restaurant_id = 
+   # @user_id = user1.id
+  end
 
   # GET /reservations/1/edit
   def edit
   end
 
+
+
   # POST /reservations
   # POST /reservations.json
   def create
+
     @reservation = Reservation.new(reservation_params)
 
-    current_user.reservations << @reservation
+    #current_user.reservations << @reservation
 
     respond_to do |format|
       if @reservation.save
-        format.html { redirect_to @reservation, notice: 'Reservation was successfully created.' }
+        format.html { redirect_to categories_path, notice: 'Reservation was successfully created.' }
         format.json { render :show, status: :created, location: @reservation }
       else
-        format.html { render :new }
+        format.html { render :new, notice: 'Reservation was Not created.'  }
         format.json { render json: @reservation.errors, status: :unprocessable_entity }
       end
     end

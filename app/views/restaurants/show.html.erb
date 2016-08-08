@@ -15,6 +15,6 @@
   <%= @restaurant.Phonenumber %>
 </p>
 
- <%= link_to 'Make A Reservation', new_reservation_path %>|
+ <%= link_to 'Make A Reservation', new_reservation_path(:param => @restaurant.id) %>|
 <%= link_to 'Back', categories_path %>
 

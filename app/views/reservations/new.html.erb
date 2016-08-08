@@ -1,2 +1,44 @@
+<script>
+$(function() {
+  $("#datepicker").datepicker({dateFormat: 'yy-mm-dd'});
+  $('#timepicker').on( "click", $('#timepicker').timepicker({ 'scrollDefault': 'now' }));
+});
+</script>
 
-<%= link_to 'Back', restaurants_path %>
+<hr />
+<h2>Make Reservation for  <%= $current_userid %></h2>
+<%= form_for(@reservation) do |f| %>
+ 
+  <div class="field">
+    <%= f.label :email %><br />
+    <% if user_signed_in? %>
+      <%= f.text_field :email, :value => current_user.email %>
+      (change the email if you are booking for someone else)
+    <% else %> 
+      <%= f.text_field :email %>
+    <% end %>
+  </div>
+
+  
+<div class="field">
+    <%= f.label :requested_date_time %><br />
+    <%= f.text_field :requested_date_time %>
+  </div>
+
+  <div class="field">
+    <%= f.label :message %><br>
+    <%= f.text_area :message %>
+  </div>
+  <div class="field" style="display: none">
+    <%= f.label :restaurant_id %><br>
+    <%= f.text_field :restaurant_id, :value => params[:param], :readonly => "readonly" %>
+  </div>
+  <div class="field" style="display: none">
+    <%= f.label :user_id %><br>
+    <%= f.text_field :user_id, :value => current_user.id, :readonly => "readonly" %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+<%= link_to 'Back', reservations_path %>
