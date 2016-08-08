@@ -6,11 +6,12 @@ Rails.application.routes.draw do
   get 'sessions/new'
 
   #get 'home/index'
-
-  
-  root to: "home#index"
+ root to: "home#index"
   resources :users do
     resources :restaurants
+  end
+  resources :users do
+    resources :reservations
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
