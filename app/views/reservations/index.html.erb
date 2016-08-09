@@ -17,8 +17,8 @@
   <tbody>
     <% @reservations.each do |reservation| %>
     <font color="#FFA500"><%= user = User.find(reservation.user_id) %>
-    <%= restaurant = Restaurant.find(reservation.restaurant_id) %> </font>
-    <%if current_user.Role == 'owner' %>
+    <% restaurant = Restaurant.find(reservation.restaurant_id) %> </font>
+    <%if current_user.Role == 'owner' && reservation.requested_date_time != nil%>
      <tr align=center>
         <td><%= reservation.email %></td>
         <td><%= reservation.requested_date_time %></td>
@@ -30,7 +30,7 @@
         <td><%= link_to 'Destroy', reservation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
       <% else %>
-    <% if reservation.user_id == current_user.id %>
+    <% if reservation.user_id == current_user.id && reservation.requested_date_time != nil %>
       <tr>
         <td><%= reservation.email %></td>
         <td><%= reservation.requested_date_time %></td>

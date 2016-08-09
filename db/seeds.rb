@@ -19,7 +19,7 @@ Role: 'owner' )
 end
 
 categories = ["Fast Food", "Chinese", "Thai", "American", "Italian"]
-categories_description = ["Go whenever feeling lazy to cook", "Only for Restaurants"]
+categories_description = ["Everyone Loves French Fries", "Only On Weekends", "Everyones Favourite To Eat", "Great Food", "Delicious Food"]
 (0..4).each do |i|
   categories << Category.create(  :name => categories[i],
                     :description => categories_description[i])
