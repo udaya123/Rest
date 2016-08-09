@@ -1,12 +1,11 @@
 <script>
 $(function() {
-  $("#datepicker").datepicker({dateFormat: 'yy-mm-dd'});
-  $('#timepicker').on( "click", $('#timepicker').timepicker({ 'scrollDefault': 'now' }));
+$('#datetimepicker1').datetimepicker();
 });
 </script>
 
 <hr />
-<h2>Make Reservation</h2>
+<h2>Make Reservation for <%= Restaurant.find(params[:param]).Name %></h2>
 <p id="notice"><%= notice %></p>
 <%= form_for(@reservation) do |f| %>
  
@@ -20,7 +19,7 @@ $(function() {
     <% end %>
   </div>
 
-  
+
 <div class="field">
     <%= f.label :requested_date_time %><br />
     <%= f.text_field :requested_date_time %>
