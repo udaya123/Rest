@@ -16,7 +16,7 @@
 
   <tbody>
     <% @reservations.each do |reservation| %>
-    <font color="white"><%= user = User.find(reservation.user_id) %>
+    <font color="#FFA500"><%= user = User.find(reservation.user_id) %>
     <%= restaurant = Restaurant.find(reservation.restaurant_id) %> </font>
     <%if current_user.Role == 'owner' %>
      <tr align=center>
